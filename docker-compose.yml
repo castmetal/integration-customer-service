@@ -1,0 +1,32 @@
+version: '3.1'
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+services:
+  # services
+  customer-service:
+    build: 
+      context: ${CUSTOMER_SERVICE_PATH}
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
+    command: npm run start
+    ports:
+      - "${CUSTOMER_SERVICE_PORT}:3000"
+    env_file:
+      - .env
+    networks:
+      - backend
+  graphql-customer-service:
+    build: 
+      context: ${GRAPHQL_PATH}
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
+    command: npm start
+    ports:
+      - "${GRAPHQL_PORT}:4001"
+    env_file:
+      - .env
+    networks:
+      - backend
