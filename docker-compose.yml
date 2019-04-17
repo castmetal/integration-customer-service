@@ -25,7 +25,7 @@ services:
         NPM_TOKEN: ${NPM_TOKEN}
     command: npm start
     ports:
-      - "${GRAPHQL_PORT}:4001"
+      - "${GRAPHQL_PORT}:3000"
     env_file:
       - .env
     networks:
